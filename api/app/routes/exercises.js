@@ -3,12 +3,12 @@ const Controller = require('../controllers/exercises');
 
 router
     .route('/exercises')
-    .get(Controller.index);
+    .get(Controller.index)
+    .post(Controller.create);
 
 router
     .route('/exercises/:id')
     .get(Controller.get)
-//.post(Controller.create)
-//.put(Controller.update)
-//.delete(Controller.remove);
+    .put(Controller.update)
+    .delete(Controller.remove);
 module.exports = router;

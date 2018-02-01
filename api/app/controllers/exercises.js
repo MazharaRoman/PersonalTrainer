@@ -2,21 +2,34 @@ const Exercise = require('../models/exercise')
 
 class ExerciseController {
 
-    index(req, res, next) {
-        Exercise.all().then((exercise) => {
-            // console.log(res);
-            // setTimeout(() => {
-            res.json(exercise);
-            // }, 1000);
-            // next();
-        })
-            .catch(err => res.json(err));
+    async index(req, res, next) {
+        try {
+            res.json(await Exercise.all());
+        } catch (e) {
+            next(e);
+        }
     }
 
-    get(req, res, next) {
-        res.send('exercise by id!');
+    async get(req, res, next) {
+        const id = req.params.id;
+        try {
+            const exercise = await Exercise.getById(id);
+            exercise ? res.json(exercise) : res.sendStatus(404);
+        } catch (e) {
+            next(e);
+        }
     }
 
+    async create(req, res, next) {
+
+    }
+
+    async update(req, res, next) {
+
+    }
+    async remove(req, res, next) {
+
+    }
 
 }
 
