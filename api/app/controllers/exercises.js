@@ -21,7 +21,9 @@ class ExerciseController {
     }
 
     async create(req, res, next) {
-
+        try  {
+            const exercise = req.body;
+        }
     }
 
     async update(req, res, next) {
