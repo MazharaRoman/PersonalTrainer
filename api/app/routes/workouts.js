@@ -1,15 +1,15 @@
 const router = require('express').Router();
-const Controller = require('../controllers/exercises');
+const Controller = require('../controllers/workouts');
 
 router
-    .route('/exercises')
+    .route('/workouts')
     .get(Controller.index)
     .post(Controller.create)
     .put(Controller.update);
 
 router
-    .route('/exercises/:id')
+    .route('/workouts/:id')
     .get(Controller.get)
     .delete(Controller.remove);
-    
+
 module.exports = router;

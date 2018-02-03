@@ -1,12 +1,12 @@
 "use strict";
-const Exercise = require('../models/exercise');
+const Workout = require('../models/workout');
 const logger = require('../../util/logger')
 
-class ExercisesController {
+class WorkoutsController {
 
     async index(req, res, next) {
         try {
-            res.json(await Exercise.all());
+            res.json(await Workout.all());
         } catch (e) {
             next(e);
         }
@@ -15,8 +15,8 @@ class ExercisesController {
     async get(req, res, next) {
         const id = req.params.id;
         try {
-            const exercise = await Exercise.getById(id);
-            exercise ? res.json(exercise) : res.sendStatus(404);
+            const workout = await Workout.getById(id);
+            workout ? res.json(workout) : res.sendStatus(404);
         } catch (e) {
             next(e);
         }
@@ -24,8 +24,8 @@ class ExercisesController {
 
     async create(req, res, next) {
         try  {
-            const exercise = req.body.exercise;
-            res.json(await Exercise.create(exercise));
+            const workout = req.body.exercise;
+            res.json(await Workout.create(workout));
         } catch (e) {
             next(e);
         }
@@ -33,8 +33,8 @@ class ExercisesController {
 
     async update(req, res, next) {
         try {
-            const exercise = req.body.exercise;
-            res.json(await Exercise.update(exercise));
+            const workout = req.body.workout;
+            res.json(await Workout.update(workout));
         } catch (e) {
             next(e);
         }
@@ -42,7 +42,7 @@ class ExercisesController {
     async remove(req, res, next) {
         try {
             const id = req.params.id;
-            await Exercise.remove(id);
+            await Workout.remove(id);
             res.sendStatus(204);
         } catch(e) {
             next(e);
@@ -51,4 +51,4 @@ class ExercisesController {
 
 }
 
-module.exports = new ExercisesController();
+module.exports = new WorkoutsController();
